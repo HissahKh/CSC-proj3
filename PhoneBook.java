@@ -410,15 +410,6 @@ public class PhoneBook {
 
 		}while(ch != 8);
 
-contactList.findfirst();
-while(!contactList.last()) {
-	System.out.println(contactList.retrieve().getContactName());
-	contactList.findnext();
-	
-}
-System.out.println(contactList.retrieve().getContactName());
-contactList.findnext();
-
 }
 
 	public static void displayContactFirstName(String n){ //display contact who have the same first name.{
