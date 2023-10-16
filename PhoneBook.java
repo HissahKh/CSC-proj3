@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class PhoneBook {
 	
-	
 	static Scanner input = new Scanner(System.in);
 	
 	
@@ -168,116 +167,93 @@ public class PhoneBook {
 		
 	
 				case 3:
-					
-					//Delete we are using the phone number since it's unique 
-					
-					System.out.println("\nEnter delete criteria: ");
-					
-					System.out.println("1.Name");
-		
-					System.out.println("2.PhoneNumber");
-					
-					
-				
-					System.out.print("\nEnter your choice:");
-					
-					int choice2 = input.nextInt();
-					
-					if(choice2 == 1){
-						
-						System.out.print("\nEnter the contact's name that you want to delete:");
-						
-						input.nextLine();
-						
-						String n = input.nextLine();
-						
-						contactList.findfirst();
-						
-						for(int i = 0 ; i < contactList.length() ; i++) {
-							
-							
-							if(contactList.retrieve().getContactName().equals(n)){
-								
-								if(!EventList.isEmpty()){
-									
-								EventList.findfirst();
-								
-								for(int j = 0 ; i < EventList.length() ; i++) {
-									
-									if(EventList.retrieve().getContact().getContactName().equals(n)){
-										
-										EventList.delete(EventList.retrieve());
-										
-									}
-									
-									EventList.findnext();
-								}
-								
-								}
-								
-								if(contactList.retrieve().getContactName().equals(n)) {
-									
-									contactList.delete(contactList.retrieve());
-									System.out.println("\nThe contact has been deleted");
-									
-									break;
 
-								}
-								
-							}
-							
-							contactList.findnext();
-						
-						}
-						
-					}
 					
-					if(choice2 == 2) {
-		
-					System.out.print("\nEnter the contact's phone number that you want to delete:");
-		
-					String ph = input.next();
-	
-					contactList.findfirst();
-					
-					for(int i = 0 ; i < contactList.length() ; i++) {
-						
-						
-						if(contactList.retrieve().getPhoneNumber().equals(ph)){
-							
-							if(!EventList.isEmpty()){
-								
-							EventList.findfirst();
-							
-							for(int j = 0 ; i < EventList.length() ; i++) {
-								
-								if(EventList.retrieve().getContact().getPhoneNumber().equals(ph)){
-									
+					System.out.println("Enter search criteria: ");
+					System.out.println("1.Name");
+					System.out.println("2.PhoneNumber");
+					int choice2 = input.nextInt();
+					if (choice2 == 1) {
+						System.out.println("Enter the contact name");
+						input.nextLine();
+						String ph = input.nextLine();
+						contactList.findfirst();
+						while(!contactList.last())
+						{
+							if(contactList.retrieve().getContactName().equals(ph)) {
+								if(!EventList.isEmpty()){
+									EventList.findfirst();
+							while(!EventList.last()) {
+								if(EventList.retrieve().getContact().getContactName().equals(ph)) {
 									EventList.delete(EventList.retrieve());
-									
 								}
-								
 								EventList.findnext();
 							}
-							
+							if(EventList.retrieve().getContact().getContactName().equals(ph)) {
+								EventList.delete(EventList.retrieve());
 							}
-							
-							if(contactList.retrieve().getPhoneNumber().equals(ph)) {
-								
+							}}
+							if(contactList.retrieve().getContactName().equals(ph)) {
 								contactList.delete(contactList.retrieve());
-								System.out.println("\nThe contact has been deleted");
-								
-								break;
-
-							}
-							
+							System.out.println("The contact has been deleted");}
+							contactList.findnext();
 						}
-						
-						contactList.findnext();
+						if(contactList.retrieve().getContactName().equals(ph)) {
+							if(!EventList.isEmpty()) {
+								EventList.findfirst();
+							while(!EventList.last()) {
+								if(EventList.retrieve().getContact().getContactName().equals(ph)) {
+									EventList.delete(EventList.retrieve());
+								}
+								EventList.findnext();
+							}
+							if(EventList.retrieve().getContact().getContactName().equals(ph)) {
+								EventList.delete(EventList.retrieve());
+							}}
+							if(contactList.retrieve().getContactName().equals(ph)) {
+								contactList.delete(contactList.retrieve());
+							System.out.println("The contact has been deleted");}}}
 					
-					}
 					
-				}
+					if (choice2 == 2) {
+						System.out.println("Enter the phone number of the contact");
+						String ph = input.next();
+						contactList.findfirst();
+						while(!contactList.last())
+						{
+							if(contactList.retrieve().getPhoneNumber().equals(ph)) {
+								if(!EventList.isEmpty()){
+									EventList.findfirst();
+							while(!EventList.last()) {
+								if(EventList.retrieve().getContact().getPhoneNumber().equals(ph)) {
+									EventList.delete(EventList.retrieve());
+								}
+								EventList.findnext();
+							}
+							if(EventList.retrieve().getContact().getPhoneNumber().equals(ph)) {
+								EventList.delete(EventList.retrieve());
+							}
+							}}
+							if(contactList.retrieve().getPhoneNumber().equals(ph)) {
+								contactList.delete(contactList.retrieve());
+							System.out.println("The contact has been deleted");}
+							contactList.findnext();
+						}
+						if(contactList.retrieve().getPhoneNumber().equals(ph)) {
+							if(!EventList.isEmpty()) {
+								EventList.findfirst();
+							while(!EventList.last()) {
+								if(EventList.retrieve().getContact().getPhoneNumber().equals(ph)) {
+									EventList.delete(EventList.retrieve());
+								}
+								EventList.findnext();
+							}
+							if(EventList.retrieve().getContact().getPhoneNumber().equals(ph)) {
+								EventList.delete(EventList.retrieve());
+							}}
+							if(contactList.retrieve().getPhoneNumber().equals(ph)) {
+								contactList.delete(contactList.retrieve());
+							System.out.println("The contact has been deleted");}}}
 		
 					break;
 		
@@ -297,10 +273,7 @@ public class PhoneBook {
 					String contact_n = input.nextLine();
 	
 					Contact contact1 = null;
-					
-					if(!contactList.isEmpty()) {
 	
-					
 					contactList.findfirst();
 	
 	
@@ -328,14 +301,6 @@ public class PhoneBook {
 						break;
 					}
 					
-					}else {
-						
-						System.out.print("\nTheres no contacts yet in your list of contacts");
-						
-						break;
-						
-					}
-					
 					System.out.print("Enter event date and time(MM/DD/YYYY HH:MM):");
 				
 					String date_time = input.nextLine();
@@ -356,15 +321,13 @@ public class PhoneBook {
 		
 					System.out.println("1.contact name");
 	
-					System.out.println("2.Event title");
+					System.out.println("2.Event tittle");
 					
 					System.out.print("\nEnter your choice:");
 	
 					int ch1 = input.nextInt();
 					
 					input.nextLine();
-					
-					int j = 0;
 	
 					if(ch1 == 1){
 						
@@ -373,7 +336,7 @@ public class PhoneBook {
 					
 						String name2 = input.nextLine();
 						
-					    j = EventList.search(name2, ch1);
+						EventList.search(name2, ch1);
 						
 					}
 					
@@ -384,11 +347,10 @@ public class PhoneBook {
 						
 						String title2 = input.nextLine();
 						
-					    j = EventList.search(title2, ch1);
+						EventList.search(title2, ch1);
 						
 					}
 					
-					if(j >= 0) {
 					System.out.print("\nif you want to see the contacts that shares the same event please press (y):");
 					
 					char enter = input.next().charAt(0);
@@ -404,12 +366,12 @@ public class PhoneBook {
 					displaySameEvent(event_title);
 					
 					}
-					}
 					
 					input.nextLine();
 
 					break;
 
+		
 	
 				case 6:
 	
@@ -457,25 +419,46 @@ while(!contactList.last()) {
 System.out.println(contactList.retrieve().getContactName());
 contactList.findnext();
 
-System.out.println(contactList.length());
-
-
 }
-	
-	public static void displayContactFirstName(String n){
-		
-		if(contactList.displayContactFound(n)){
 
-			contactList.findfirst();
+	public static void displayContactFirstName(String n){ //display contact who have the same first name.{
 			
-			while(!contactList.last()) {
-				
+			
+			if(contactList.displayContactFound(n)){
+
+				contactList.findfirst();
+			
+				while(!contactList.last()){ 
+			
 				String [] full_name = contactList.retrieve().getContactName().split(" ");
 			
-				String first_name = full_name[0]; //to get the first name 
-				
-				if(first_name.equalsIgnoreCase(n)){
+				String first_name = full_name[0]; //to get the first name
+			
 					
+					if(first_name.equalsIgnoreCase(n)){
+			
+						System.out.println("\nName:" + contactList.retrieve().getContactName());
+					
+						System.out.println("Phone Number:" + contactList.retrieve().getPhoneNumber());
+							
+						System.out.println("Email Address:" + contactList.retrieve().getEmailAddress());
+				   
+						System.out.println("Address:" + contactList.retrieve().getAddress());
+											
+						System.out.println("Birthday:" + contactList.retrieve().getBirthday());
+													
+						System.out.println("Notes:" + contactList.retrieve().getNote());
+			
+						contactList.findnext();
+					}
+				}
+					
+				String [] all_name = contactList.retrieve().getContactName().split(" ");
+				
+				String first_name = all_name[0];
+				
+				if(first_name.equalsIgnoreCase(n)) {
+						
 					System.out.println("\nName:" + contactList.retrieve().getContactName());
 					
 					System.out.println("Phone Number:" + contactList.retrieve().getPhoneNumber());
@@ -487,49 +470,20 @@ System.out.println(contactList.length());
 					System.out.println("Birthday:" + contactList.retrieve().getBirthday());
 												
 					System.out.println("Notes:" + contactList.retrieve().getNote());
-					
 				}
-				
-				contactList.findnext();
-			
-			}
-			
-			String [] all_name = contactList.retrieve().getContactName().split(" ");
-			
-			String first_name = all_name[0];
-			
-			if(first_name.equalsIgnoreCase(n)){
-				
-				System.out.println("\nName:" + contactList.retrieve().getContactName());
-				
-				System.out.println("Phone Number:" + contactList.retrieve().getPhoneNumber());
-					
-				System.out.println("Email Address:" + contactList.retrieve().getEmailAddress());
-		   
-				System.out.println("Address:" + contactList.retrieve().getAddress());
-									
-				System.out.println("Birthday:" + contactList.retrieve().getBirthday());
-											
-				System.out.println("Notes:" + contactList.retrieve().getNote());
-				
-			}
-		
 		}
 		
-	} 
+	}
 
 	public static void displaySameEvent(String e) { //display contact with the same event
-		
-		if(!EventList.isEmpty()) {
 		
 		EventList.findfirst();
 		
 			while(!EventList.last()){
 				
 				if(EventList.retrieve().getEventTitle().equalsIgnoreCase(e)){
-					
 				
-					System.out.println("\n"+EventList.retrieve().getContact().getContactName());
+					System.out.println(EventList.retrieve().getContact().getContactName());
 				}
 				
 				EventList.findnext();
@@ -538,56 +492,10 @@ System.out.println(contactList.length());
 			
 		if(EventList.retrieve().getEventTitle().equalsIgnoreCase(e)){
 			
-			System.out.println();
-			
-			System.out.println("\n"+EventList.retrieve().getContact().getContactName());
-			
-		}else {
-			
-			System.out.println("\nEvent not found!");
+			System.out.println(EventList.retrieve().getContact().getContactName());
 			
 		}
-		
-		}
-		
 	}
 	
-	/*public static void displayEventDetails(int c)
-	{
-		if(c == 1) {
-		
-			System.out.println("Enter the contact name: ");
-			input.nextLine();
-			String name1 = input.nextLine();
-			e1.search(name1, c);
-			
-		}
-		
-		if(c == 2) {
-		
-			System.out.println("Enter the event title: ");
-			input.nextLine();
-			String name1 = input.nextLine();
-			e1.search(name1, c);
-		
-		}
-	}*/
-	
-	//displayEvents >> O(n)
-	/*public static void displayEvents()// Print all events alphabetically >> its already ordered when we add the events >> so we just need to print it normally
-	{
-				e1.findfirst();
-		while(!e1.last())
-		{
-			Event e2 = e1.retrieve();
-			System.out.println(e2.getEventTitle() + "," + e2.getDateAndTime() + "," + e2.getLocation() + "," + e2.getContact().getContactName());
-			e1.findnext();
-		}
-		Event e2 = e1.retrieve();
-		System.out.println(e2.getEventTitle() + "," + e2.getDateAndTime() + "," + e2.getLocation() + "," + e2.getContact().getContactName());// for the last element
-	}
-	
-	
-	*/
 	
 }
